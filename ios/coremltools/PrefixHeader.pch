@@ -1,0 +1,19 @@
+//
+//  PrefixHeader.pch
+//  coremltools
+//
+//  Created by 馬 沙暴 on 2019/02/12.
+//  Copyright © 2019年 Shabao Ma. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __cplusplus
+#include <opencv2/opencv.hpp>
+#endif
+
+#endif /* PrefixHeader_pch */
