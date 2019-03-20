@@ -26,7 +26,7 @@ I took a lot of pictures from different angle of Nintendo Switch.
 
 ![raw_picture](https://raw.githubusercontent.com/shabaoma/Nintendo-Switch-screen-detector/master/assets/raw_picture.png)
 
-To get the mask of screen area, I use Labelbox which is a great tool to label the image. The origin image is too big so I resized it to 256 x 256 first. I marked every corner coordinate of screen area like this.
+To get the mask of screen area, I use [Labelbox](https://labelbox.com/) which is a great tool to label the image. The origin image is too big so I resized it to 256 x 256 first. I marked every corner coordinate of screen area like this.
 
 ![labeling](https://raw.githubusercontent.com/shabaoma/Nintendo-Switch-screen-detector/master/assets/labeling.png)
 
@@ -39,7 +39,7 @@ I only took 31 pictures. I need more sample to fit the model. I use [ImageDataGe
 train:val:test is 70:15:15.
 
 ## Model
-I learned this from Bruno G. do Amaral at [kallge](https://www.kaggle.com/bguberfain/naive-keras)
+I learned this from Bruno G. do Amaral at [kallge](https://www.kaggle.com/bguberfain/naive-keras).
 
 The model is simply a 3 layers CNN.
 ```
@@ -57,7 +57,7 @@ Trainable params: 10,945
 Non-trainable params: 0
 _________________________________________________________________
 ```
-The keypoint is loss function. It's combiled binary crossentropy and dice coef to emphasize a good prediction accuracy in the mask area.
+The keypoint is the loss function. It's combiled binary crossentropy and dice coef to emphasize a good prediction accuracy in the mask area.
 
 ## Training
 5 epochs with a batch_size of 10.
@@ -72,7 +72,19 @@ loss: -0.7986 - dice_coef: 0.9322 - binary_accuracy: 0.8972 - true_positive_rate
 ## Detecting
 This is the exciting part that you will get the clean image you want.
 
+1. Apply prediction on image. We will get a prediction probability result. Filter the value lower than 0.95. We will get a binary prediction result.
+
+2. Use `cv2.Canny` to get the edge of each block. It may generate many edges. Choose the one that has the biggest area.
+
+3. We roughly get the screen edge. But it doesn't shapes as a  quadrilateral. We calculate the nearest point to the corner on the edge. Plot the area on the original image.
+
+4. The result shows we get the area that we want.
+
+5. Flat the image using the method [pyimagesearch](https://www.pyimagesearch.com/2014/05/05/building-pokedex-python-opencv-perspective-warping-step-5-6/) provide. This is basically a matrix transform.
+
 ![detect](https://raw.githubusercontent.com/shabaoma/Nintendo-Switch-screen-detector/master/assets/detect.png)
 
 ## Detecting on iOS
+If you want to apply your model to iOS. I provide sample code that read image and detect the area.
+
 ![iOS](https://raw.githubusercontent.com/shabaoma/Nintendo-Switch-screen-detector/master/assets/iOS.png)
