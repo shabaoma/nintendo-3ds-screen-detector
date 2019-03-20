@@ -2,7 +2,7 @@
 //  coremltoolsTests.swift
 //  coremltoolsTests
 //
-//  Created by 馬 沙暴 on 2019/02/01.
+//  Created by Shabao Ma on 2019/02/01.
 //  Copyright © 2019年 Shabao Ma. All rights reserved.
 //
 

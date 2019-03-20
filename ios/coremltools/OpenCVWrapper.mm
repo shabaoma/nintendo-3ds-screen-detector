@@ -2,7 +2,7 @@
 //  OpenCVWrapper.m
 //  coremltools
 //
-//  Created by 馬 沙暴 on 2019/02/12.
+//  Created by Shabao Ma on 2019/02/12.
 //  Copyright © 2019年 Shabao Ma. All rights reserved.
 //
 
